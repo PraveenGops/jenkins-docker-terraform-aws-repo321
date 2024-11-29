@@ -1,3 +1,5 @@
+# this is to create a ec2 instance on aws
+
 provider "aws" {
     region = "us-east-1"
 }
