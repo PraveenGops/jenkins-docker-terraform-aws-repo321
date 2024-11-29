@@ -1,7 +1,7 @@
 # this is to create a ec2 instance on aws
 
 provider "aws" {
-    region = "us-east-1"
+    region = "ap-south-1"
 }
 
 resource "aws_instance" "my-first-aws_instance" {
