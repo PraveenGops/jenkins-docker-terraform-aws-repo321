@@ -24,6 +24,10 @@ pipeline {
                 script {
                     // Set up Terraform environment
                     sh '''
+		    export TF_VAR_AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+    		    export TF_VAR_AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+                    export TF_VAR_AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+
                     # Initialize Terraform
                     terraform init
                     
