@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws')
+        AWS_SECRET_ACCESS_KEY = credentials('aws')
+        AWS_REGION = 'ap-south-1'
+    }
+    stages {
+        stage('List EC2 Instances') {
+            steps {
+                sh '''
+                # Configure AWS CLI environment
+                export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+                export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+                export AWS_DEFAULT_REGION=${AWS_REGION}
+                
+                # List EC2 Instances
+                aws ec2 describe-instances --query "Reservations[*].Instances[*].{ID:InstanceId,State:State.Name}" --output table
+                '''
+            }
+        }
+    }
+}
+
